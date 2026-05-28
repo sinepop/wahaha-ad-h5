@@ -210,7 +210,7 @@
     z-index: 4;
     display: none;
     flex-direction: column;
-    padding: 28px 24px;
+    padding: clamp(20px, 5.33vw, 28px) clamp(16px, 4.27vw, 24px);
     animation: fadeIn 0.5s ease;
     overflow-y: auto;
   }
@@ -263,8 +263,8 @@
   .center-title {
     position: relative;
     width: 100%;
-    padding: 16px 8px;
-    margin-bottom: 8px;
+    padding: 12px 8px 8px;
+    margin-bottom: 4px;
   }
 
   .center-title .ribbon {
@@ -275,17 +275,17 @@
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
     font-size: 14px;
     letter-spacing: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     transform: rotate(-2deg);
     box-shadow: 3px 3px 0 var(--ink);
   }
 
   .center-title h1 {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    font-size: 46px;
+    font-size: clamp(30px, 8.5vw, 46px);
     color: var(--ad-green);
     line-height: 1;
-    letter-spacing: -1px;
+    letter-spacing: 3px;
     text-shadow:
       2px 2px 0 var(--milk),
       4px 4px 0 var(--ink);
@@ -293,7 +293,7 @@
 
   .center-title h2 {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    font-size: 28px;
+    font-size: clamp(20px, 5.33vw, 28px);
     color: var(--ink);
     margin-top: 8px;
     letter-spacing: 2px;
@@ -306,7 +306,7 @@
     background: var(--paper);
     border: 2.5px solid var(--ink);
     border-radius: 10px;
-    padding: 16px 18px;
+    padding: 14px 16px 14px 32px;
     margin-top: 8px;
     text-align: left;
     box-shadow: 4px 4px 0 var(--ad-red);
@@ -328,6 +328,7 @@
     font-size: 15px;
     line-height: 1.7;
     color: var(--ink);
+    padding-right: 50px;
   }
   .copy-box p strong {
     color: var(--ad-red);
@@ -336,11 +337,93 @@
     padding: 0 3px;
   }
 
+  /* 检测告知书 - 小瓶子插画 */
+  .copy-doodle {
+    width: 84px;
+    height: 108px;
+    position: absolute;
+    right: 72px;
+    top: 38px;
+    opacity: 0.85;
+    animation: doodleFloat 3s ease-in-out infinite;
+  }
+  @keyframes doodleFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-4px) rotate(2deg); }
+  }
+  /* 瓶盖 */
+  .copy-doodle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 14px;
+    background: var(--ad-green);
+    border-radius: 4px 4px 0 0;
+    border: 2px solid var(--ink);
+    border-bottom: none;
+  }
+  /* 瓶身 */
+  .copy-doodle::after {
+    content: '';
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 54px;
+    height: 80px;
+    background: linear-gradient(180deg, #fff 0%, var(--milk-deep) 100%);
+    border: 2px solid var(--ink);
+    border-radius: 6px 6px 10px 10px;
+    box-shadow: inset 0 -20px 0 rgba(15,123,63,0.12);
+  }
+  /* 瓶身上的 "AD" 文字 */
+  .copy-doodle-label {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: var(--ad-green);
+    letter-spacing: 1px;
+    z-index: 1;
+    text-shadow: 0 0 0 var(--ink);
+  }
+  /* 小气泡装饰 */
+  .copy-doodle-bubble {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid var(--ad-green);
+    opacity: 0.4;
+  }
+  .copy-doodle-bubble:nth-child(1) {
+    width: 8px; height: 8px;
+    top: 6px; right: -6px;
+    animation: bubblePop 2s ease-in-out infinite;
+  }
+  .copy-doodle-bubble:nth-child(2) {
+    width: 5px; height: 5px;
+    top: 16px; right: -12px;
+    animation: bubblePop 2s ease-in-out 0.4s infinite;
+  }
+  .copy-doodle-bubble:nth-child(3) {
+    width: 6px; height: 6px;
+    top: 2px; right: -16px;
+    animation: bubblePop 2s ease-in-out 0.8s infinite;
+  }
+  @keyframes bubblePop {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+    50% { transform: translateY(-3px) scale(1.1); opacity: 0.7; }
+  }
+
   /* AD钙奶瓶 - 220新AD主视觉 */
   .bottle-stage {
-    margin-top: 14px;
-    width: 260px;
-    height: 260px;
+    margin-top: 10px;
+    width: clamp(180px, 58vw, 240px);
+    height: clamp(180px, 58vw, 240px);
     position: relative;
     animation: bottleBounce 2.5s ease-in-out infinite;
   }
@@ -359,7 +442,7 @@
   .tag-row {
     display: flex;
     gap: 6px;
-    margin-top: 12px;
+    margin-top: 8px;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -377,15 +460,15 @@
 
   /* 主按钮 */
   .btn-primary {
-    margin-top: 18px;
-    margin-bottom: 14px;
-    padding: 16px 50px;
+    margin-top: 14px;
+    margin-bottom: 10px;
+    padding: clamp(12px, 3.2vw, 16px) clamp(28px, 8vw, 50px);
     background: var(--ad-red);
     color: var(--milk);
     border: 3px solid var(--ink);
     border-radius: 100px;
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    font-size: 22px;
+    font-size: clamp(18px, 4.27vw, 22px);
     letter-spacing: 4px;
     cursor: pointer;
     box-shadow: 5px 5px 0 var(--ink);
@@ -502,7 +585,7 @@
 
   .question {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    font-size: 26px;
+    font-size: clamp(20px, 5.33vw, 26px);
     line-height: 1.5;
     color: var(--ink);
     margin-bottom: 28px;
@@ -636,7 +719,7 @@
   }
 
   .result-emoji {
-    font-size: 60px;
+    font-size: clamp(40px, 13vw, 60px);
     line-height: 1;
     margin: 6px 0;
     animation: bounce 1.5s ease-in-out infinite;
@@ -656,7 +739,7 @@
 
   .result-name {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    font-size: 34px;
+    font-size: clamp(26px, 7vw, 34px);
     color: var(--ad-green-deep);
     line-height: 1;
     margin-bottom: 8px;
@@ -698,7 +781,7 @@
   }
   .stat-value {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    font-size: 22px;
+    font-size: clamp(18px, 4.5vw, 22px);
     line-height: 1;
   }
 
@@ -791,7 +874,7 @@
   }
   .match-card .who {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    font-size: 22px;
+    font-size: clamp(18px, 4.5vw, 22px);
     line-height: 1.2;
     margin-bottom: 4px;
   }
@@ -939,6 +1022,41 @@
     50% { transform: translateY(0) rotate(0deg); }
     75% { transform: translateY(-2px) rotate(4deg); }
   }
+
+  /* ============ 响应式：小屏适配 ============ */
+  @media (max-width: 374px) {
+    .screen { padding: 18px 14px; }
+    .center-title h1 { font-size: clamp(24px, 9vw, 30px); }
+    .center-title h2 { font-size: 18px; }
+    .center-title .ribbon { font-size: 12px; padding: 3px 12px; }
+    .question { font-size: 18px; min-height: 2.8em; }
+    .option { padding: 10px 12px; font-size: 14px; }
+    .option .letter { width: 24px; height: 24px; font-size: 13px; }
+    .btn-primary { padding: 10px 24px; }
+    .btn-share, .btn-restart { font-size: 14px; padding: 12px 6px; }
+    .result-emoji { font-size: 48px; }
+    .result-name { font-size: 28px; }
+    .stat-value { font-size: 18px; }
+    .match-card .who { font-size: 18px; }
+    .match-card .emoji { font-size: 30px; }
+    .official-bar .logo-wrap img { height: 34px; }
+    .official-bar .left { font-size: 9px; }
+    .copy-box p { font-size: 13px; padding-right: 40px; }
+    .copy-doodle { width: 60px; height: 78px; right: 56px; top: 30px; }
+    .copy-doodle-label { font-size: 8px; }
+    .bottle-stage { width: clamp(150px, 55vw, 220px); height: clamp(150px, 55vw, 220px); }
+  }
+
+  @media (max-width: 414px) and (min-width: 375px) {
+    .bottle-stage { width: clamp(180px, 62vw, 260px); height: clamp(180px, 62vw, 260px); }
+  }
+
+  @media (max-width: 350px) {
+    .screen { padding: 14px 10px; }
+    .center-title h1 { font-size: 22px; }
+    .btn-primary { padding: 10px 18px; font-size: 16px; }
+    .option { font-size: 13px; padding: 8px 10px; }
+  }
 </style>
 </head>
 <body>
@@ -970,6 +1088,12 @@
         「AD 童心」<br>
         以及你的<strong>AD钙奶宇宙身份</strong>。
       </p>
+      <div class="copy-doodle">
+        <span class="copy-doodle-label">AD</span>
+        <div class="copy-doodle-bubble"></div>
+        <div class="copy-doodle-bubble"></div>
+        <div class="copy-doodle-bubble"></div>
+      </div>
     </div>
 
     <div class="bottle-stage">
@@ -1103,10 +1227,12 @@ const questions = [
   {
     q: '加班到几点，你会突然想喝AD钙奶？',
     opts: [
-      { t: '19:00，还没开始崩', tag: 'moyu' },
+      { t: '19:00，还没开始崩', tag: 'bianlidian' },
+      { t: '20:00，刚开完会，灵魂已出走一半', tag: 'fangxue' },
       { t: '21:30，PPT开始吞噬我', tag: 'banzhuren' },
-      { t: '23:00，我需要童年充电', tag: 'bianlidian' },
+      { t: '23:00，我需要童年充电', tag: 'tongzhuo' },
       { t: '不用加班，我每天都需要补钙', tag: 'bingzhen' },
+      { t: '不限时，看见同事喝我就馋', tag: 'xiguan' },
     ]
   },
   {
@@ -1116,15 +1242,19 @@ const questions = [
       { t: '直饮派，豪放小学生', tag: 'banzhuren' },
       { t: '冰镇后慢慢喝', tag: 'bingzhen' },
       { t: '一排拆开分给同桌', tag: 'tongzhuo' },
+      { t: '上课藏在课本后面偷偷喝', tag: 'banzhuren' },
+      { t: '和好朋友干杯，然后相视一笑', tag: 'chunyou' },
     ]
   },
   {
     q: '工位抽屉变成小学课桌，你最可能翻出什么？',
     opts: [
       { t: '被压扁的AD钙奶吸管', tag: 'kaogu' },
-      { t: '皱巴巴的奖励贴纸', tag: 'kaogu' },
-      { t: '半张没写完的试卷', tag: 'banzhuren' },
+      { t: '皱巴巴的奖励贴纸', tag: 'xiaomaibu' },
+      { t: '半张没写完的试卷', tag: 'chunyou' },
       { t: '同桌传来的小纸条', tag: 'tongzhuo' },
+      { t: '当年总也集不齐的干脆面卡片', tag: 'xiaomaibu' },
+      { t: '一支写完但舍不得扔的铅笔', tag: 'kaogu' },
     ]
   },
   {
@@ -1134,6 +1264,8 @@ const questions = [
       { t: '拍照发朋友圈：童年复活', tag: 'xiaomaibu' },
       { t: '只买一瓶，站冰柜前发呆', tag: 'fangxue' },
       { t: '想起小学春游的书包重量', tag: 'chunyou' },
+      { t: '拿起来又放下，内心演了一出戏', tag: 'bianlidian' },
+      { t: '想起冰箱里还有，嘴角微微上扬', tag: 'bingzhen' },
     ]
   },
   {
@@ -1141,25 +1273,31 @@ const questions = [
     opts: [
       { t: '冰箱冷藏3小时后', tag: 'bingzhen' },
       { t: '午休醒来，灵魂没归位', tag: 'moyu' },
-      { t: '打工人崩溃前5分钟', tag: 'moyu' },
-      { t: '和朋友一人一瓶', tag: 'tongzhuo' },
+      { t: '打工人崩溃前5分钟', tag: 'fangxue' },
+      { t: '和朋友一人一瓶', tag: 'chunyou' },
+      { t: '深夜改方案，当续命小甜水慢慢喝', tag: 'banzhuren' },
+      { t: '一个人蹲在阳台看晚霞，不说话', tag: 'fangxue' },
     ]
   },
   {
     q: '如果AD钙奶是你的童年技能，你获得的是？',
     opts: [
-      { t: '课间十分钟满血复活', tag: 'moyu' },
+      { t: '课间十分钟满血复活', tag: 'tongzhuo' },
       { t: '小卖部精准定位', tag: 'xiaomaibu' },
       { t: '同桌关系自动升温', tag: 'tongzhuo' },
-      { t: '被老师点名也不慌', tag: 'banzhuren' },
+      { t: '被老师点名也不慌', tag: 'chunyou' },
+      { t: '写作业自动开启发呆模式', tag: 'moyu' },
+      { t: '准确预测小卖部几点关门', tag: 'bianlidian' },
     ]
   },
   {
     q: '你觉得自己现在的童心还剩多少？',
     opts: [
+      { t: '3%，够在闻到AD钙奶时笑一下', tag: 'xiguan' },
       { t: '10%，但很顽强', tag: 'kaogu' },
-      { t: '35%，藏在表情包里', tag: 'xiguan' },
-      { t: '70%，上班时不敢露出来', tag: 'moyu' },
+      { t: '35%，藏在表情包里', tag: 'moyu' },
+      { t: '60%，但有开关，上班自动静音', tag: 'tongzhuo' },
+      { t: '70%，上班时不敢露出来', tag: 'fangxue' },
       { t: '100%，我只是身体成年了', tag: 'chunyou' },
     ]
   },
@@ -1168,8 +1306,10 @@ const questions = [
     opts: [
       { t: '工位抽屉', tag: 'moyu' },
       { t: '冰箱第二层', tag: 'bingzhen' },
-      { t: '通勤包侧袋', tag: 'chunyou' },
-      { t: '朋友圈仅自己可见', tag: 'fangxue' },
+      { t: '通勤包侧袋', tag: 'kaogu' },
+      { t: '朋友圈仅自己可见', tag: 'xiguan' },
+      { t: '枕头底下，睡前偷偷喝一瓶', tag: 'banzhuren' },
+      { t: '心里那个永远不上锁的角落', tag: 'xiguan' },
     ]
   },
 ];
@@ -1193,8 +1333,8 @@ const personas = {
     emoji: '⛏️',
     name: '课桌抽屉考古学家',
     slogan: '"我翻的不是抽屉，是2008年的自己"',
-    keywords: ['课桌抽屉', '皱巴巴贴纸', '压扁吸管', '童年遗迹'],
-    desc: '收藏癖、怀旧型人格。每次清理东西你都舍不得扔，因为每件小物都在帮你封存一段童年时光。你的抽屉是一座私人博物馆。',
+    keywords: ['课桌抽屉', '压扁吸管', '童年遗迹', '舍不得扔'],
+    desc: '你不是舍不得扔东西。你是怕扔掉了，就再也想不起那个夏天的自己。那些压扁的吸管、写完的笔、皱巴巴的贴纸——它们不是废品，是你和十年前的自己之间，仅存的证据。你收藏的不是小物件。是差点被遗忘的那个你。',
     task: '翻出一件你的童年小物（一张贴纸、一张照片、一支旧笔），对它说一句"好久不见"。',
     soul: 5, mask: 2,
     match: 'chunyou',
@@ -1205,8 +1345,8 @@ const personas = {
     emoji: '🏪',
     name: '小卖部暗号破译员',
     slogan: '"只要看到冰柜，我就知道童年还没关门"',
-    keywords: ['小卖部', '冰柜', '便利店', '童年传送门'],
-    desc: '行动派、爱分享、社交型人格。你对所有有AD钙奶的地方都自带导航，便利店冰柜对你来说就是童年时空的入口。',
+    keywords: ['小卖部', '冰柜', '童年传送门', '放学路'],
+    desc: '小卖部是你人生中第一个自己做主的地方。"我要这个"三个字，是你童年里最自由的时刻。现在你路过便利店会下意识往里看——不是想买东西，是因为那个站在冰柜前做选择的小孩，还在那里站着，还没选好。',
     task: '下班路过一家从没进过的便利店，进去买一瓶AD钙奶，假装你刚放学不想回家。',
     soul: 4, mask: 3,
     match: 'tongzhuo',
@@ -1216,10 +1356,10 @@ const personas = {
     id: 'AD-004',
     emoji: '❄️',
     name: '冰镇宇宙管理员',
-    slogan: '"AD钙奶不冰镇，童年就差点意思"',
-    keywords: ['冰箱第二层', '冰镇仪式', '起雾瓶子', '温度强迫症'],
-    desc: '讲究口感、仪式感强的人。你对AD钙奶的温度有严格要求，必须冰到瓶子起雾才算合格的童年。AD钙奶在你的冰箱里有固定的VIP位置。',
-    task: '把一瓶AD钙奶放进冰箱冷藏3小时，掐着表，然后认真喝完它。中途不许喝水。',
+    slogan: '"那3小时的等待，是我给童年的仪式"',
+    keywords: ['冰箱第二层', '等待', '起雾瓶子', '冰镇仪式'],
+    desc: '你相信好东西值得等。那3小时的冷藏不是等待，是一场期待——你看着瓶身慢慢起雾，就像童年慢慢浮出水面。成年人的世界一切都太快了，只有你还记得：最甜的味道，要留给最耐心的自己。每瓶冰镇AD钙奶，都是你亲手复原的一小块童年。',
+    task: '今晚放一瓶AD钙奶进冰箱，设好闹钟。3小时后拿出来，不要看手机，慢慢喝完。等本身就是童年教给你的第一课。',
     soul: 3, mask: 4,
     match: 'moyu',
     matchCombo: '工位充电二人组\n"一个负责冰镇，一个负责摸鱼，绝配"',
@@ -1228,10 +1368,10 @@ const personas = {
     id: 'AD-005',
     emoji: '🥤',
     name: '吸管折角发明家',
-    slogan: '"吸管扎下去的那一秒，童年开始联网"',
-    keywords: ['吸管角度', '撕标签', '小动作', '可爱怪癖'],
-    desc: '细节控、有点小怪癖但很可爱的人。你对吸管插入瓶口的角度有自己的研究——必须斜45度，必须一次扎准，这是你对童年最微小但执着的仪式。',
-    task: '买一瓶AD钙奶，认真研究吸管的最佳插入角度，并发朋友圈征求大家意见。',
+    slogan: '"每个改不掉的小习惯，都是童年留下的暗号"',
+    keywords: ['小动作', '撕标签', '童年惯性', '秘密暗号'],
+    desc: '你是一个把童年藏在习惯里的人。那些看似无意义的小动作——撕标签、折吸管、把瓶盖转三圈再打开——是你的身体还记得小时候的自己。别人以为你只是有小怪癖，只有你知道：每一个改不掉的小动作，都是一条通往童年的秘密通道。',
+    task: '今天留意一个你从小到大都没改掉的小习惯——转笔、咬吸管、撕标签——对它说一句"辛苦了，还在啊"。',
     soul: 4, mask: 4,
     match: 'tongzhuo',
     matchCombo: '吸管交换协会\n"一个负责扎吸管，一个负责拆吸管，缺一不可"',
@@ -1240,9 +1380,9 @@ const personas = {
     id: 'AD-006',
     emoji: '🎒',
     name: '春游背包补给官',
-    slogan: '"我的书包里永远有零食，也永远有你的一瓶"',
-    keywords: ['春游书包', '零食后勤', '为朋友准备', '温暖担当'],
-    desc: '照顾型人格、团队气氛担当。你总是默默准备好所有人的份，朋友饿了你有零食，朋友渴了你有AD钙奶。你是大家心里的"妈妈型选手"。',
+    slogan: '"春游那天分出去的那半瓶，我甜到了现在"',
+    keywords: ['春游书包', '为朋友准备', '温暖担当', '默默分享'],
+    desc: '你从小就发现一个秘密：自己开心不算开心，看到别人开心才是。所以你的书包里永远多带一瓶——不是因为自己喝不完，是怕有人忘了带。长大了你还是这样：包里多一把伞、多一个充电宝、多一句"你还好吗"。你不是老好人。你只是记得：那年春游有人没带水，你分了他半瓶，他笑了。那个笑容你记了十几年。',
     task: '买两瓶AD钙奶，一瓶给自己，一瓶送给一个好久没联系的小学/中学朋友。',
     soul: 5, mask: 3,
     match: 'kaogu',
@@ -1253,8 +1393,8 @@ const personas = {
     emoji: '🌅',
     name: '放学路口观察员',
     slogan: '"我不是走得慢，我是在等童年追上来"',
-    keywords: ['一个人发呆', '慢慢走', '独处时光', '放学路'],
-    desc: '慢热、敏感、喜欢独处的人。你享受一个人慢慢走的时光，对你来说，放学路上的那段独处是最珍贵的童年仪式——你在等什么，可能你自己也说不清。',
+    keywords: ['放学路', '慢慢走', '独处时光', '在等什么'],
+    desc: '你不是不合群。你只是需要一段路，把今天的自己走回小时候的样子。放学路上那十几分钟，是你一天里唯一不用扮演任何人的时间——不用当乖学生、不用当好同事、不用做任何人的期待。你就是在走路，慢慢地走，像小时候一样。你在等什么？你可能真的说不清。但你知道，如果走太快，童年会追不上你。',
     task: '下班走一条没走过的路，喝一瓶AD钙奶，假装你刚放学还不想回家。允许你晚回家30分钟。',
     soul: 4, mask: 4,
     match: 'bianlidian',
@@ -1264,10 +1404,10 @@ const personas = {
     id: 'AD-008',
     emoji: '👀',
     name: '班主任视线闪避专家',
-    slogan: '"长大后才发现，最刺激的不是迟到，是开会走神"',
-    keywords: ['上课走神', '抽屉藏零食', '装作认真', '躲老师'],
-    desc: '搞笑型、反骨型人格。从小到大你都不是听话的乖学生，但你比谁都聪明——你只是没把聪明用在课本上而已。你的童年是一本精彩的"课外书"。',
-    task: '开会时在桌下悄悄喝一口AD钙奶，假装自己回到了高三晚自习。注意眼神交流。',
+    slogan: '"你以为你变乖了，其实只是学会了更优雅地走神"',
+    keywords: ['开会走神', '假装认真', '偷偷叛逆', '内心小孩'],
+    desc: '你从小就不太乖——上课走神、抽屉藏零食、课本空白处画满小人。长大了你以为自己终于变乖了，直到有一天开会时灵魂出窍，被领导点名才回过神。那一刻你突然发现：你只是把"课桌"换成了"工位"，把"课本"换成了"PPT"。你的反骨没消失，它只是变得更温柔了。那个在课堂上偷偷喝AD钙奶的小孩，还在你身体里坐着。',
+    task: '下次开会走神的时候，不要愧疚。那是你的童年在提醒你：你还是那个会在课本角落画小人的人。在笔记本角落画一个小人吧——就现在。',
     soul: 5, mask: 2,
     match: 'moyu',
     matchCombo: '后排走神联盟\n"一个负责装认真，一个负责打哈欠，老师永远抓不到"',
@@ -1278,7 +1418,7 @@ const personas = {
     name: '便利店童年复健师',
     slogan: '"成年人的小卖部，叫24小时便利店"',
     keywords: ['深夜便利店', '凌晨补钙', '城市童年', '深夜充电'],
-    desc: '都市打工人、深夜情绪型人格。你的童年复健地点是凌晨的便利店——一瓶冰镇AD钙奶，是你和过去的自己唯一的联络方式。便利店灯光下，你还是那个放学路上的小孩。',
+    desc: '小时候的小卖部会在傍晚关门。但便利店不会。凌晨的街头，只有冰柜的灯还亮着。你站在那束光里，手里握着一瓶AD钙奶，突然觉得——自己还是那个放学后会拐进小卖部的小孩。你没变。只是小卖部换了个名字，24小时为你亮着。',
     task: '晚上11点后去一次便利店，买一瓶冰AD钙奶，站在冰柜前喝完。不许玩手机。',
     soul: 4, mask: 3,
     match: 'fangxue',
@@ -1289,8 +1429,8 @@ const personas = {
     emoji: '👯',
     name: '同桌羁绊召唤师',
     slogan: '"一排AD钙奶拆开，童年就自动组队"',
-    keywords: ['小纸条', '同桌情谊', '分享主义', '童年羁绊'],
-    desc: '重友情、爱分享的人。对你来说，AD钙奶从来不是一个人喝的——必须有一个同桌、一个搭子、一个会分你最后一口的人。你的童年里全是别人的名字。',
+    keywords: ['同桌情谊', '分享主义', '童年羁绊', '相伴'],
+    desc: '你的童年里全是别人的名字。你记得同桌喜欢吃什么、朋友最怕什么、谁会在你难过时一句话不说只陪着你坐。对你来说，快乐不是一个人的事——一瓶AD钙奶要拆成两半，一包零食要分成两份，连回忆都要有人一起确认才算数。长大了你还是这样：你相信所有好东西，都要有人分着吃才更甜。你不是怕孤独。你只是觉得，一个人甜的快乐，太安静了。',
     task: '给一个小学/中学同学发一张你今天的AD钙奶照片，附一句"还记得我们小学吗"。',
     soul: 5, mask: 3,
     match: 'xiaomaibu',
@@ -1329,7 +1469,7 @@ function renderQuestion() {
 
   const list = $('optionsList');
   list.innerHTML = '';
-  const letters = ['A', 'B', 'C', 'D'];
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
   q.opts.forEach((opt, idx) => {
     const btn = document.createElement('button');
     btn.className = 'option';
@@ -1353,11 +1493,11 @@ function selectOption(tag) {
 }
 
 function showResult() {
-  // 找最高分身份
-  let topTag = 'moyu', topScore = -1;
-  Object.entries(scores).forEach(([k, v]) => {
-    if (v > topScore) { topScore = v; topTag = k; }
-  });
+  // 找最高分身份（同分随机）
+  let topScore = -1;
+  Object.values(scores).forEach(v => { if (v > topScore) topScore = v; });
+  const topTags = Object.entries(scores).filter(([_, v]) => v === topScore).map(([k]) => k);
+  const topTag = topTags[Math.floor(Math.random() * topTags.length)];
 
   const p = personas[topTag];
   $('resultId').textContent = p.id;
